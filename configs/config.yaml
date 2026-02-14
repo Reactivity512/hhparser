@@ -1,0 +1,75 @@
+cities:
+  - id: 1
+    name: "MOSCOW"
+    code: 1
+    enabled: true
+  - id: 2
+    name: "KRASNODAR"
+    code: 53
+    enabled: true
+
+technologies:
+  - name: "Cpp"
+    search: "C%2B%2B"
+    category: "languages"
+    enabled: true
+  - name: "Golang"
+    search: "Golang"
+    category: "languages"
+    enabled: true
+  - name: "Java"
+    search: "Java"
+    category: "languages"
+    enabled: true
+  - name: "CSharp"
+    search: "C%23"
+    category: "languages"
+    enabled: true
+  - name: "Python"
+    search: "Python"
+    category: "languages"
+    enabled: true
+  - name: "Php"
+    search: "Php"
+    category: "languages"
+    enabled: true
+  - name: "Javascript"
+    search: "Javascript"
+    category: "languages"
+    enabled: true
+  - name: "Laravel"
+    search: "Laravel"
+    category: "framework"
+    enabled: true
+  - name: "Spring"
+    search: "Spring"
+    category: "framework"
+    enabled: true
+  - name: "Nodejs"
+    search: "Node.js"
+    category: "framework"
+    enabled: true
+  - name: "Django"
+    search: "Django"
+    category: "framework"
+    enabled: true
+  - name: "Devops"
+    search: "Devops"
+    category: "roles"
+    enabled: true
+  - name: "TeamLead"
+    search: "Team+lead"
+    category: "roles"
+    enabled: true
+
+parser:
+  max_goroutines: 4
+  timeout_seconds: 10
+  retry_count: 2
+  rate_limit_ms: 200
+  url_search_vacancies: "https://hh.ru/search/vacancy?text=%s&salary=&ored_clusters=true&area=%d&hhtmFrom=vacancy_search_list&hhtmFromLabel=vacancy_search_line"
+
+output:
+  format: "json"
+  directory: "./data"
+  filename_prefix: "vacancies"

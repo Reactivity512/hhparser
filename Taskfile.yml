@@ -1,0 +1,91 @@
+version: '3'
+
+vars:
+  BINARY_NAME: parser
+  CONFIG_PATH: ./configs/config.yaml
+  DATA_DIR: ./data
+
+env:
+  GOFLAGS: -mod=mod
+
+tasks:
+  default:
+    desc: "Показать список доступных команд"
+    cmds:
+      - task --list
+
+  run:
+    desc: "Запустить парсер вакансий"
+    cmds:
+      - go run cmd/main.go
+
+  test:
+    desc: "Запустить тесты"
+    cmds:
+      - go test ./... -v
+
+  # Сборка
+  build:
+    desc: "Собрать приложение"
+    cmds:
+      - go build -ldflags "-s -w" -o bin/{{.BINARY_NAME}}{{exeExt}} cmd/main.go
+
+  build-all:
+    desc: "Собрать под все платформы"
+    cmds:
+      - GOOS=windows GOARCH=amd64 go build -o bin/{{.BINARY_NAME}}-windows-amd64.exe cmd/main.go
+      - GOOS=linux GOARCH=amd64 go build -o bin/{{.BINARY_NAME}}-linux-amd64 cmd/main.go
+      - GOOS=darwin GOARCH=amd64 go build -o bin/{{.BINARY_NAME}}-darwin-amd64 cmd/main.go
+
+  build-release:
+    desc: "Собрать релизную версию"
+    vars:
+      VERSION:
+        sh: git describe --tags --always --dirty
+    cmds:
+      - go build -ldflags="-X main.version={{.VERSION}}" -o bin/{{.BINARY_NAME}}{{exeExt}} cmd/main.go
+
+ # Очистка
+  clean:
+    desc: "Очистить временные файлы"
+    cmds:
+      - go clean
+      - rm -rf bin/
+      - rm -rf {{.DATA_DIR}}/
+      - rm -f coverage.out
+    ignore_error: true
+
+  clean-data:
+    desc: "Очистить только данные"
+    cmds:
+      - rm -rf {{.DATA_DIR}}/*
+    ignore_error: true
+
+  # Зависимости
+  deps:
+    desc: "Установить зависимости"
+    cmds:
+      - go mod download
+      - go mod tidy
+
+  deps-update:
+    desc: "Обновить зависимости"
+    cmds:
+      - go get -u ./...
+      - go mod tidy
+
+  # Линтер
+  lint:
+    desc: "Запустить линтер"
+    cmds:
+      - golangci-lint run ./...
+
+  fmt:
+    desc: "Форматировать код"
+    cmds:
+      - go fmt ./...
+
+  vet:
+    desc: "Запустить go vet"
+    cmds:
+      - go vet ./...
