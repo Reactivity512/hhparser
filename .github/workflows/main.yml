@@ -14,5 +14,6 @@ jobs:
         uses: golangci/golangci-lint-action@v3
         with:
           version: v1.64.4
+      - run: go test -coverprofile=coverage.out ./...
       - run: go test -race -coverprofile=coverage.txt -covermode=atomic ./...
       - run: go build -o parser cmd/main.go

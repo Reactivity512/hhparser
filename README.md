@@ -1,5 +1,10 @@
 # Vacancy Parser for hh.ru
 
+[![CI](https://github.com/Reactivity512/hhparser/actions/workflows/main.yml/badge.svg)](https://github.com/Reactivity512/hhparser/actions/workflows/main.yml)
+[![Coverage](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2FReactivity512%2Fhhparser%2Fmain%2Fcoverage.json&query=%24.coverage&label=Coverage&color=brightgreen)](https://github.com/Reactivity512/hhparser)
+[![Go Report Card](https://goreportcard.com/badge/github.com/Reactivity512/hhparser)](https://goreportcard.com/report/github.com/Reactivity512/hhparser)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 Парсер вакансий с hh.ru для сбора статистики по технологиям и городам. Собирает данные о количестве вакансий для различных языков программирования и технологий.
 
 ## 📋 Содержание
@@ -333,7 +338,10 @@ jobs:
           go-version: '1.21'
       - run: go mod download
 
-      - run: golangci-lint run
+      - name: Run golangci-lint
+        uses: golangci/golangci-lint-action@v3
+        with:
+          version: v1.64.4
       - run: go test -race -coverprofile=coverage.txt -covermode=atomic ./...
       - run: go build -o parser cmd/main.go
       
@@ -348,6 +356,6 @@ jobs:
 5. Запушьте ветку (`git push origin feature/amazing-feature`)
 6. Откройте **Pull Reques**
 
-[![CI](https://github.com/Reactivity512/hhparser/actions/workflows/ci.yml/badge.svg)](https://github.com/Reactivity512/hhparser/actions/workflows/ci.yml)
+[![CI](https://github.com/Reactivity512/hhparser/actions/workflows/main.yml/badge.svg)](https://github.com/Reactivity512/hhparser/actions/workflows/main.yml)
 [![Coverage](https://github.com/Reactivity512/hhparser/badge.svg)](https://coveralls.io/github/Reactivity512/hhparser)
 [![Go Report Card](https://goreportcard.com/badge/github.com/Reactivity512/hhparser)](https://goreportcard.com/report/github.com/Reactivity512/hhparser)
