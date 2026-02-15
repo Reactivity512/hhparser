@@ -1,7 +1,7 @@
 # Vacancy Parser for hh.ru
 
 [![CI](https://github.com/Reactivity512/hhparser/actions/workflows/main.yml/badge.svg)](https://github.com/Reactivity512/hhparser/actions/workflows/main.yml)
-[![Coverage](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2FReactivity512%2Fhhparser%2Fmain%2Fcoverage.json&query=%24.coverage&label=Coverage&color=brightgreen)](https://github.com/Reactivity512/hhparser)
+[![Coverage Report](https://img.shields.io/badge/Coverage_Report-HTML-blue)](https://github.com/Reactivity512/hhparser/actions/runs/22026451925/artifacts/5513438778)
 [![Go Report Card](https://goreportcard.com/badge/github.com/Reactivity512/hhparser)](https://goreportcard.com/report/github.com/Reactivity512/hhparser)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
@@ -355,7 +355,3 @@ jobs:
 4. Сделайте коммит (`git commit -m 'Add amazing feature'`)
 5. Запушьте ветку (`git push origin feature/amazing-feature`)
 6. Откройте **Pull Reques**
-
-[![CI](https://github.com/Reactivity512/hhparser/actions/workflows/main.yml/badge.svg)](https://github.com/Reactivity512/hhparser/actions/workflows/main.yml)
-[![Coverage](https://github.com/Reactivity512/hhparser/badge.svg)](https://coveralls.io/github/Reactivity512/hhparser)
-[![Go Report Card](https://goreportcard.com/badge/github.com/Reactivity512/hhparser)](https://goreportcard.com/report/github.com/Reactivity512/hhparser)
