@@ -1,8 +1,10 @@
 package storage
 
 import (
+	"fmt"
 	"hhparser/internal/config"
 	"hhparser/internal/hhparser"
+	"os"
 	"time"
 )
 
@@ -37,6 +39,10 @@ func NewStorageConfig(cfg *config.Config) StorageConfig {
 func SaveStatistics(vacancies []*hhparser.Vacancy, cfg StorageConfig) error {
 	stats := collectStatistics(vacancies, cfg)
 
+	if err := ensureDir(cfg.DataDir); err != nil {
+		return err
+	}
+
 	if err := saveJSON(stats, cfg.DataDir); err != nil {
 		return err
 	}
@@ -45,6 +51,21 @@ func SaveStatistics(vacancies []*hhparser.Vacancy, cfg StorageConfig) error {
 		return err
 	}
 
+	return nil
+}
+
+func ensureDir(dir string) error {
+	info, err := os.Stat(dir)
+	if err != nil {
+		if err := os.MkdirAll(dir, 0o755); err != nil {
+			return fmt.Errorf("failed to create data directory: %w", err)
+		}
+		return nil
+	}
+
+	if !info.IsDir() {
+		return fmt.Errorf("path '%s' exists but is not a directory", dir)
+	}
 	return nil
 }
 
